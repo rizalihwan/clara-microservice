@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                @livewire('tweets.index')
+                Hello
             </div>
         </div>
     </div>
