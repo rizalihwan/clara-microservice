@@ -53,7 +53,7 @@ class Service
         return implode('', $param);
     }
 
-    static function paginateKuy(array $items, $perPage = 10, $page = 1, $options = [])
+    static function withPaginate(array $items, $perPage = 10, $page = 1, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

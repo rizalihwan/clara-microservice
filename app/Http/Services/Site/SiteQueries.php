@@ -19,6 +19,8 @@ class SiteQueries extends Service
 
         throw_if(!$response, new Exception('Terjadi kesalahan: Data tidak dapat diperoleh'));
 
-        return collect(data_get($response, "data"));
+        $result = collect(data_get($response, "data"));
+
+        return static::withPaginate($result->toArray(), 10, 1);
     }
 }

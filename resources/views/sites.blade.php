@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $item)
+                        @foreach ($data['data'] as $item)
                             <tr>
                                 <th>{{ $item->number }}</th>
                                 <td>{{ $item->name->short . ' (' . $item->name->transliteration->id . ') ' }}</td>
@@ -53,6 +53,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{-- {{ $data->links() }} --}}
             </div>
         </div>
     </div>
