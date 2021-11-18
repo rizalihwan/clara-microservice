@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'quranapi' => env('QURAN_CREDENTIAL_ENDPOINT')
+    'third_party_api' => [
+        'quranapi' => env('QURAN_CREDENTIAL_ENDPOINT'),
+        'covidapi' => env('COVID_CREDENTIAL_ENDPOINT')
+    ]
 ];
