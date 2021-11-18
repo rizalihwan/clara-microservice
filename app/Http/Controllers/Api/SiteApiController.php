@@ -22,7 +22,7 @@ class SiteApiController extends Controller
                     ];
                 });
         } catch (\Throwable $th) {
-            return "Error: data tidak dapat di Peroleh {$th->getMessage()} Status code : {$th->getCode()}";
+            return $this->errorMessageRespond("data tidak dapat di Peroleh {$th->getMessage()}", $th->getCode());
         }
 
         return view('sites', compact('data'));
@@ -37,12 +37,13 @@ class SiteApiController extends Controller
                 $data = [
                     'id' => $data->number,
                     'name' => $data->name->short,
-                    'id_name' => $data->name->transliteration->id
+                    'id_name' => $data->name->transliteration->id,
+                    'tafsir' => $data->tafsir->id
                 ];
             } catch (\Exception $ex) {
-                return "Error: data tidak dapat di Peroleh {$ex->getMessage()} Status code : {$ex->getCode()}";
+                return $this->errorMessageRespond("data tidak dapat di Peroleh {$ex->getMessage()}", $ex->getCode());
             } catch (\Error $err) {
-                return "Error: {$err->getMessage()}";
+                return $this->errorMessageRespond($err->getMessage(), $ex->getCode());
             }
         } else {
             abort(404);
