@@ -9,7 +9,6 @@
             border-radius: 5px;
             padding: 30px;
         }
-
         .green-text {
             color: rgb(167, 228, 76);
         }

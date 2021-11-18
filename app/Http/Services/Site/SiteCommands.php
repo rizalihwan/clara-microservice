@@ -6,5 +6,5 @@ use App\Http\Services\Service;
 
 class SiteCommands extends Service
 {
-    // command site queries
+    // site commands
 }

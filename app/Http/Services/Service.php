@@ -27,9 +27,9 @@ class Service
         return static::initSetStatic(self::$curl, new Client());
     }
 
-    public static function apiEndpointConfig()
+    public static function apiEndpointConfig($credentialAPI)
     {
-        return static::initSetStatic(self::$apiEndpoint, config('credentials.quranapi'));
+        return static::initSetStatic(self::$apiEndpoint, $credentialAPI);
     }
 
     static function setParamAPI($data = [])
