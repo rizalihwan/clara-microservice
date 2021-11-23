@@ -16,5 +16,5 @@ Route::prefix('sites')->name('sites.')->namespace('Api')->group(function () {
     Route::get('{id}/surah', 'SiteApiController@detail')->name('detail');
 
     // tripay
-    Route::get('tripay', 'SiteApiController@tripay')->name('tripay.index');
+    Route::get('tripay/payment-instruction', 'SiteApiController@paymentInstruction');
 });
