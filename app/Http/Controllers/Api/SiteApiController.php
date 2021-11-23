@@ -51,4 +51,9 @@ class SiteApiController extends Controller
 
         return view('detailsites', compact('data'));
     }
+
+    public function tripay()
+    {
+        dd(SiteQueries::getTripayData('GET', 'api/payment/instruction'));
+    }
 }

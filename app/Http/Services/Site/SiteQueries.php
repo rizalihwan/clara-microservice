@@ -58,4 +58,19 @@ class SiteQueries extends Service
     {
         return collect(static::getDataCovid('GET', $type));
     }
+
+    static function getTripayData($type, string $params = null, array $options = [])
+    {
+        $setParam = static::setParamAPI([]);
+
+        $url = sprintf('%s/%s', self::apiEndpointConfig(config('credentials.third_party_api.tripay')), $params . $setParam);
+
+        $response = self::curlConfig()->request($type, $url, $options);
+
+        $response = json_decode($response->getBody());
+
+        throw_if(!$response, new Exception('Terjadi kesalahan: Data tidak dapat diperoleh ' . array_key_exists(500, static::$error_codes) ? 500 : null));
+
+        return $response;
+    }
 }
