@@ -33,9 +33,9 @@
                     <a class="navbar-brand" href="{{ route('sites.index') }}">
                         Surah
                     </a>
-                    <a class="navbar-brand" href="{{ route('sites.tripay.index') }}">
+                    {{-- <a class="navbar-brand" href="{{ route('sites.tripay.index') }}">
                         Tripay
-                    </a>
+                    </a> --}}
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
