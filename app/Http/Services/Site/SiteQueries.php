@@ -20,7 +20,7 @@ class SiteQueries extends Service
         throw_if(!$response, new Exception('Terjadi kesalahan: Data tidak dapat diperoleh ' . array_key_exists(500, static::$error_codes) ? 500 : null));
 
         if ($key) {
-            $result = collect(data_get($response, "data"))->where('number', $key)->first();
+            $result = collect(data_get($response, "data"))->where('number', (int)$key)->first();
             $result ?? abort(404);
         } else {
             $result = collect(data_get($response, "data"));
