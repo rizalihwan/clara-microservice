@@ -16,6 +16,37 @@ class SiteApiController extends Controller
         'required' => ':attribute wajib diisi.'
     ];
 
+    private function valueModified(string $type, $value)
+    {
+        $allowedType = ['ucwords', 'ucfirst', 'lcfirst', 'strtoupper', 'strtolower'];
+
+        if (!in_array($type, $allowedType)) {
+            throw new \Exception("Your input Type is Not Allowed!", 405);
+        } else {
+            switch ($type) {
+                case "ucwords":
+                    $value = ucwords($value);
+                    break;
+                case "ucfirst":
+                    $value = ucfirst($value);
+                    break;
+                case "lcfirst":
+                    $value = lcfirst($value);
+                    break;
+                case "strtoupper":
+                    $value = strtoupper($value);
+                    break;
+                case "strtolower":
+                    $value = strtolower($value);
+                    break;
+                default:
+                    echo null;
+            }
+        }
+
+        return $value;
+    }
+
     public function index()
     {
         try {
@@ -25,9 +56,9 @@ class SiteApiController extends Controller
             else
                 $data = $data->map(function ($item) {
                     return [
-                        'id' => $item->number,
+                        'id' => !(int)$item->number || is_string($item->number) ? null : (int)$item->number,
                         'name' => $item->name->short,
-                        'id_name' => $item->name->transliteration->id
+                        'id_name' => $this->valueModified('strtoupper', $item->name->transliteration->id)
                     ];
                 });
         } catch (\Throwable $th) {
@@ -44,10 +75,10 @@ class SiteApiController extends Controller
         if ($data) {
             try {
                 $data = [
-                    'id' => $data->number,
-                    'name' => $data->name->short,
-                    'id_name' => $data->name->transliteration->id,
-                    'tafsir' => $data->tafsir->id
+                    'id' => !(int)$data->number || is_string($data->number) ? null : (int)$data->number,
+                    'name' => ucfirst($data->name->short),
+                    'id_name' => $this->valueModified('ucwords', $data->name->transliteration->id),
+                    'tafsir' => $this->valueModified('ucfirst', $data->tafsir->id)
                 ];
             } catch (\Exception $ex) {
                 return $this->errorMessageRespond("data tidak dapat di Peroleh {$ex->getMessage()}", $ex->getCode());
